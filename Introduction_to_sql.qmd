@@ -1,0 +1,58 @@
+---
+title: "Introduction to SQL"
+author: "Enda Finn & Niall McGuinness"
+format: 
+  revealjs:
+    theme: [simple, customstyle.scss]
+    center-title-slide: true
+    slide-level: 2
+    fontsize: 2em
+    linestretch: 1.5
+    scrollable: true
+    slide-number: c/t
+    show-slide-number: all
+    transition: fade
+    touch: true
+    code-fold: true
+    code-overflow: scroll
+    code-line-numbers: true
+    code-copy: true
+    code-link: true
+    highlight-style: github
+    show-notes: separate-page
+    preview-links: auto
+    progress: true
+    history: true
+    multiplex: true
+    logo: images/icons/dkitlogo.jpg
+    chalkboard:
+      theme: whiteboard
+      src: drawings.json
+    menu:
+      width: half
+      numbers: true
+---
+
+## Introduction to SQL
+
+- SQL: _Structured Query Language_
+- Standard language for interacting with RDBMS
+- Operations in SQL:
+  - Data Query: `SELECT`
+  - Data Manipulation: `INSERT`, `UPDATE`, `DELETE`
+  - Data Definition: `CREATE`, `ALTER`, `DROP`
+  - Data Control: `GRANT`, `REVOKE`
+
+## SQL Syntax Basics
+
+```sql
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+INSERT INTO table_name (column1, column2, ...)
+VALUES (value1, value2, ...);
+UPDATE table_name  
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+DELETE FROM table_name WHERE condition;
+```

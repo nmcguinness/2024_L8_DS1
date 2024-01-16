@@ -1,0 +1,259 @@
+---
+title: "Database Systems 1" 
+subtitle: "Introduction to RDBMS and SQL"
+institute: "Dundalk Institute of Technology"
+format: 
+  revealjs:
+    theme: [simple, customstyle.scss]
+    center-title-slide: true
+    slide-level: 2
+    fontsize: 2em
+    linestretch: 1.5
+    scrollable: true
+    slide-number: c/t
+    show-slide-number: all
+    transition: fade
+    touch: true
+    code-fold: true
+    code-overflow: scroll
+    code-line-numbers: true
+    code-copy: true
+    code-link: true
+    highlight-style: github
+    show-notes: separate-page
+    preview-links: auto
+    progress: true
+    history: true
+    multiplex: true
+    logo: images/icons/dkitlogo.jpg
+    chalkboard:
+      theme: whiteboard
+      src: drawings.json
+    menu:
+      width: half
+      numbers: true
+---
+
+## Lecture Objectives
+
+- Understand the basics of Relational Database Management Systems (RDBMS)
+- Learn the fundamentals of SQL (Structured Query Language)
+- Explore how RDBMS and SQL are used in game and software development
+
+## What is RDBMS?
+
+- **RDBMS** stands for *Relational Database Management System*
+- A database management system based on the relational model
+- Examples: MySQL, PostgreSQL, Oracle, SQL Server
+- Key Features:
+  - Data stored in **tables** 
+  - Data manipulation using **SQL**
+  - Ensures **data integrity** and **security**
+  - Supports **ACID** properties (Atomicity, Consistency, Isolation, Durability)
+
+## Key Terms in RDBMS
+
+- **Table**: A collection of related data entries and consists of columns and rows.
+- **Row/Record**: A single, implicitly structured data item in a table.
+- **Column/Field**: A set of data values of a particular type.
+- **Primary Key**: A unique identifier for each record in a table.
+- **Foreign Key**: A field in a table that links to a primary key in another table.
+- **Normalization**: The process of organizing data to reduce redundancy.
+
+## Example - Users Table 
+
+| UserID | Username       | Email                      | PasswordHash                        | DateCreated         |
+|--------|----------------|----------------------------|-------------------------------------|---------------------|
+| 1      | johndoe        | john.doe@netmail.com       | 5f4dcc3b5aa765d61d8327deb882cf99    | 2023-01-01 10:00:00 |
+| 2      | janedoe        | jane.doe123@inbox.com      | 7c6a180b36896a0a8c02787eeafb0e4c    | 2023-01-02 11:20:00 |
+| 3      | mike123        | mike.brown@service.io      | 12dcafe4d5b7456c21a7c685dcd19a3f    | 2023-01-03 09:30:00 |
+| 4      | anna_smith     | anna.smith@mydomain.org    | 6e251da4fb0e29cda6108c5d8483a504    | 2023-01-05 14:15
+
+## Structure - Users Table
+
+| Column Name    | Data Type     | Constraints     |
+|----------------|---------------|-----------------|
+| UserID         | INT           | PRIMARY KEY     |
+| Username       | VARCHAR(50)   | NOT NULL        |
+| Email          | VARCHAR(100)  | NOT NULL        |
+| PasswordHash   | VARCHAR(255)  | NOT NULL        |
+| DateCreated    | DATETIME      | DEFAULT CURRENT_TIMESTAMP |
+
+
+## Companies Using RDBMS
+
+- **Amazon**: Uses Oracle and AWS RDS for managing vast e-commerce data.
+- **Facebook**: Employs MySQL for massive social media data management.
+- **Google**: Utilizes Bigtable and Cloud SQL for diverse data handling needs.
+- **Walmart**: Leverages a combination of databases including Oracle for retail data.
+- **Bank of America**: Uses SQL Server for financial data management.
+
+## Real-World RDBMS Usage Examples
+
+- **Amazon**
+  - Manages over 1 billion items in inventory databases.
+  - Processes millions of transactions daily.
+
+- **Facebook**
+  - Over 2.8 billion active users, data managed using MySQL.
+  - Handles billions of likes, comments, and shares daily.
+
+- **Google**
+  - Processes over 3.5 billion searches per day.
+  - Uses RDBMS for ad management, user data, and more.
+
+- **Walmart**
+  - Manages over 200 million customer transactions per week.
+  - Uses RDBMS for inventory, sales, and customer data.
+
+- **Bank of America**
+  - Handles millions of financial transactions daily.
+  - Uses RDBMS for secure and efficient data management.
+
+## Impact of RDBMS in Business
+
+- **Data Volume Handling**: Capable of managing petabytes of data. For instance, Amazon's databases store information on over 350 million different products.
+- **High Transaction Throughput**: Banks like Wells Fargo process over 100 million transactions per day using RDBMS.
+- **Data Integrity and Security**: Financial institutions use RDBMS to manage accounts involving trillions of dollars in assets. For example, JPMorgan Chase oversees assets worth over $3.2 trillion.
+- **Scalability**: E-commerce giants like Alibaba handle over 80,000 transactions per second during peak sales events using scalable RDBMS solutions.
+- **Real-Time Processing**: Telecommunications companies process billions of call data records daily. Verizon, for example, handles around 1.2 billion call detail records per day.
+
+---
+
+## RDBMS in the Gaming Industry
+
+- **Overview**: Gaming companies use RDBMS to manage game data, player information, in-game transactions, and more.
+- **Examples**: Companies like Blizzard, EA, and Ubisoft use RDBMS for various aspects of game management and player engagement.
+
+---
+
+## Use Cases of RDBMS in Gaming
+
+- **Player Data Management**: Storing player profiles, progress, and preferences. For example, Ubisoft uses databases to manage player data across multiple games.
+- **In-Game Economy**: Tracking virtual transactions, inventory management, and in-game currency. Games like Fortnite use RDBMS to handle millions of in-game transactions.
+- **Multiplayer and Matchmaking**: Managing multiplayer sessions and player matchmaking. Blizzard's games, like Overwatch, use RDBMS to efficiently match players.
+- **Leaderboards and Statistics**: Storing and updating player rankings and game statistics in real-time. EA's sports games use RDBMS to maintain global leaderboards.
+
+## RDBMS in Online Gaming Platforms
+
+- **Steam**: Manages over 1 billion accounts and thousands of games, using RDBMS for user data, game libraries, and transaction records.
+- **Xbox Live**: Uses RDBMS to manage user profiles, achievements, and online multiplayer sessions for millions of users.
+- **PlayStation Network**: Relies on RDBMS for managing user accounts, digital storefront transactions, and social features.
+
+## Challenges and Solutions in Gaming with RDBMS
+
+- **Scalability**: Handling peak loads during game launches and events. Solutions involve scalable cloud-based RDBMS.
+- **Real-Time Performance**: Ensuring low latency for real-time game data. Use of optimized database schemas and indexing strategies.
+- **Data Security**: Protecting sensitive player data. Implementation of robust security protocols and regular audits.
+
+## Reflection on RDBMS in Gaming
+
+- Consider how RDBMS impacts your experience in online and multiplayer games.
+- Reflect on the balance between real-time performance and data integrity in gaming databases.
+
+## RDBMS in the Bitcoin Industry
+
+- **Overview**: Bitcoin and cryptocurrency platforms use RDBMS for transaction records, wallet management, and exchange operations.
+- **Examples**: Companies like Coinbase and Binance use RDBMS for secure and efficient transaction processing.
+
+## Use Cases of RDBMS in Bitcoin
+
+- **Transaction Ledger**: Storing and verifying transaction records in a secure and scalable manner.
+- **Wallet Management**: Managing user wallet data, including balances and transaction history.
+- **Exchange Operations**: Handling trading data, order matching, and currency exchange rates.
+
+## RDBMS in Pharma
+
+- **Overview**: Pharmaceutical companies use RDBMS for drug development data, clinical trial management, and patient records.
+- **Examples**: Pfizer and Merck use RDBMS to manage extensive research data and clinical trial information.
+
+## Use Cases of RDBMS in Pharma
+
+- **Research Data Management**: Storing and analyzing data from drug research and development.
+- **Clinical Trials**: Managing patient data, trial results, and regulatory compliance information.
+- **Supply Chain Management**: Tracking drug production, distribution, and inventory.
+
+## RDBMS in FinTech
+
+- **Overview**: FinTech companies use RDBMS for transaction processing, risk management, and customer data analysis.
+- **Examples**: Companies like Square and Robinhood rely on RDBMS for real-time financial data processing.
+
+## Use Cases of RDBMS in FinTech
+
+- **Transaction Processing**: Managing real-time financial transactions and payment processing.
+- **Risk Analysis and Compliance**: Storing and analyzing data for risk management and regulatory compliance.
+- **Customer Data Management**: Managing customer profiles, transaction history, and personalized financial services.
+
+## RDBMS in AI and Machine Learning
+
+- **Overview**: AI and ML companies use RDBMS to store and process large datasets for model training and analysis.
+- **Examples**: IBM Watson and OpenAI use RDBMS for data storage and retrieval in AI model development.
+
+## Use Cases of RDBMS in AI
+
+- **Data Storage for Model Training**: Storing large datasets used for training machine learning models.
+- **Model Performance Tracking**: Recording and analyzing AI model performance metrics.
+- **User Interaction Data**: Managing data from user interactions with AI systems for continuous improvement.
+
+## RDBMS in Cybersecurity
+
+- **Overview**: Cybersecurity firms use RDBMS for threat data analysis, incident management, and security information management.
+- **Examples**: Companies like Symantec and McAfee use RDBMS to manage and analyze security-related data.
+
+## Use Cases of RDBMS in Cybersecurity
+
+- **Threat Intelligence**: Storing and analyzing data on cyber threats and attack patterns.
+- **Incident Response**: Managing data related to security incidents and response activities.
+- **Compliance and Reporting**: Storing data for regulatory compliance and generating security reports.
+
+## RDBMS in Telecom
+
+- **Overview**: Telecommunications companies use RDBMS for customer data management, billing systems, and network operations.
+- **Examples**: AT&T and Verizon use RDBMS to manage vast amounts of customer and operational data.
+
+## Use Cases of RDBMS in Telecom
+
+- **Customer Data Management**: Storing and managing customer profiles, service plans, and usage data.
+- **Billing and Payment Processing**: Managing billing cycles, payment records, and transaction processing.
+- **Network Operations**: Storing data related to network infrastructure, traffic management, and maintenance.
+
+## RDBMS in Data Analytics
+
+- **Overview**: Data analytics firms use RDBMS for storing, processing, and analyzing large datasets to derive insights.
+- **Examples**: Companies like Tableau and Splunk use RDBMS for efficient data analysis and visualization.
+
+## Use Cases of RDBMS in Data Analytics
+
+- **Data Warehousing**: Storing large volumes of data for analysis and reporting.
+- **Business Intelligence**: Providing insights for business decision-making through data analysis.
+- **Predictive Analytics**: Using historical data to predict future trends and patterns.
+
+## Reflection on Industry Usage
+
+- How do these specific numbers change your perspective on the importance and capabilities of RDBMS?
+- Consider the challenges in managing such large volumes of data and transactions. How do RDBMS features contribute to addressing these challenges?
+
+## Introduction to SQL
+
+- SQL: _Structured Query Language_
+- Standard language for interacting with RDBMS
+- Operations in SQL:
+  - Data Query: `SELECT`
+  - Data Manipulation: `INSERT`, `UPDATE`, `DELETE`
+  - Data Definition: `CREATE`, `ALTER`, `DROP`
+  - Data Control: `GRANT`, `REVOKE`
+
+## SQL Syntax Basics
+
+```sql
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+INSERT INTO table_name (column1, column2, ...)
+VALUES (value1, value2, ...);
+UPDATE table_name  
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+DELETE FROM table_name WHERE condition;
+```
+

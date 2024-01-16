@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.529">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introduction to RDBMS and SQL</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Introduction_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Introduction_files/libs/quarto-html/quarto.js"></script>
+<script src="Introduction_files/libs/quarto-html/popper.min.js"></script>
+<script src="Introduction_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Introduction_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Introduction_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Introduction_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Introduction_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Introduction_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Introduction_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Introduction.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Introduction to RDBMS and SQL</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="lecture-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-objectives">Lecture Objectives</h2>
+<ul>
+<li>Understand the basics of Relational Database Management Systems (RDBMS)</li>
+<li>Learn the fundamentals of SQL (Structured Query Language)</li>
+<li>Explore how RDBMS and SQL are used in software development</li>
+<li>Identify key terms and concepts in database management</li>
+</ul>
+</section>
+<section id="what-is-rdbms" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-rdbms">What is RDBMS?</h2>
+<ul>
+<li><strong>RDBMS</strong> stands for <em>Relational Database Management System</em></li>
+<li>A database management system based on the relational model</li>
+<li>Examples: MySQL, PostgreSQL, Oracle, SQL Server</li>
+<li>Key Features:
+<ul>
+<li>Data stored in <strong>tables</strong></li>
+<li>Data manipulation using <strong>SQL</strong></li>
+<li>Ensures <strong>data integrity</strong> and <strong>security</strong></li>
+<li>Supports <strong>ACID</strong> properties (Atomicity, Consistency, Isolation, Durability)</li>
+</ul></li>
+</ul>
+</section>
+<section id="key-terms-in-rdbms" class="level2">
+<h2 class="anchored" data-anchor-id="key-terms-in-rdbms">Key Terms in RDBMS</h2>
+<ul>
+<li><strong>Table</strong>: A collection of related data entries and consists of columns and rows.</li>
+<li><strong>Row/Record</strong>: A single, implicitly structured data item in a table.</li>
+<li><strong>Column/Field</strong>: A set of data values of a particular type.</li>
+<li><strong>Primary Key</strong>: A unique identifier for each record in a table.</li>
+<li><strong>Foreign Key</strong>: A field in a table that links to a primary key in another table.</li>
+<li><strong>Normalization</strong>: The process of organizing data to reduce redundancy.</li>
+</ul>
+</section>
+<section id="introduction-to-sql" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-sql">Introduction to SQL</h2>
+<ul>
+<li>SQL: <em>Structured Query Language</em></li>
+<li>Standard language for interacting with RDBMS</li>
+<li>Operations in SQL:
+<ul>
+<li>Data Query: <code>SELECT</code></li>
+<li>Data Manipulation: <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></li>
+<li>Data Definition: <code>CREATE</code>, <code>ALTER</code>, <code>DROP</code></li>
+<li>Data Control: <code>GRANT</code>, <code>REVOKE</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="sql-syntax-basics" class="level2">
+<h2 class="anchored" data-anchor-id="sql-syntax-basics">SQL Syntax Basics</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> column1, column2, <span class="op">..</span>.</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> table_name</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> condition;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> table_name (column1, column2, <span class="op">..</span>.)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span> (value1, value2, <span class="op">..</span>.);</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> table_name  </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> column1 <span class="op">=</span> value1, column2 <span class="op">=</span> value2, <span class="op">..</span>.</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> condition;</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> table_name <span class="kw">WHERE</span> condition;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="companies-using-rdbms" class="level2">
+<h2 class="anchored" data-anchor-id="companies-using-rdbms">Companies Using RDBMS</h2>
+<ul>
+<li><strong>Amazon</strong>: Uses Oracle and AWS RDS for managing vast e-commerce data.</li>
+<li><strong>Facebook</strong>: Employs MySQL for massive social media data management.</li>
+<li><strong>Google</strong>: Utilizes Bigtable and Cloud SQL for diverse data handling needs.</li>
+<li><strong>Walmart</strong>: Leverages a combination of databases including Oracle for retail data.</li>
+<li><strong>Bank of America</strong>: Uses SQL Server for financial data management.</li>
+</ul>
+</section>
+<section id="real-world-rdbms-usage-examples" class="level2">
+<h2 class="anchored" data-anchor-id="real-world-rdbms-usage-examples">Real-World RDBMS Usage Examples</h2>
+<ul>
+<li><strong>Amazon</strong>
+<ul>
+<li>Manages over 1 billion items in inventory databases.</li>
+<li>Processes millions of transactions daily.</li>
+</ul></li>
+<li><strong>Facebook</strong>
+<ul>
+<li>Over 2.8 billion active users, data managed using MySQL.</li>
+<li>Handles billions of likes, comments, and shares daily.</li>
+</ul></li>
+<li><strong>Google</strong>
+<ul>
+<li>Processes over 3.5 billion searches per day.</li>
+<li>Uses RDBMS for ad management, user data, and more.</li>
+</ul></li>
+<li><strong>Walmart</strong>
+<ul>
+<li>Manages over 200 million customer transactions per week.</li>
+<li>Uses RDBMS for inventory, sales, and customer data.</li>
+</ul></li>
+<li><strong>Bank of America</strong>
+<ul>
+<li>Handles millions of financial transactions daily.</li>
+<li>Uses RDBMS for secure and efficient data management.</li>
+</ul></li>
+</ul>
+</section>
+<section id="impact-of-rdbms-in-business" class="level2">
+<h2 class="anchored" data-anchor-id="impact-of-rdbms-in-business">Impact of RDBMS in Business</h2>
+<ul>
+<li><strong>Data Volume Handling</strong>: Capable of managing petabytes of data. For instance, Amazon’s databases store information on over 350 million different products.</li>
+<li><strong>High Transaction Throughput</strong>: Banks like Wells Fargo process over 100 million transactions per day using RDBMS.</li>
+<li><strong>Data Integrity and Security</strong>: Financial institutions use RDBMS to manage accounts involving trillions of dollars in assets. For example, JPMorgan Chase oversees assets worth over $3.2 trillion.</li>
+<li><strong>Scalability</strong>: E-commerce giants like Alibaba handle over 80,000 transactions per second during peak sales events using scalable RDBMS solutions.</li>
+<li><strong>Real-Time Processing</strong>: Telecommunications companies process billions of call data records daily. Verizon, for example, handles around 1.2 billion call detail records per day.</li>
+</ul>
+<hr>
+</section>
+<section id="rdbms-in-the-gaming-industry" class="level2">
+<h2 class="anchored" data-anchor-id="rdbms-in-the-gaming-industry">RDBMS in the Gaming Industry</h2>
+<ul>
+<li><strong>Overview</strong>: Gaming companies use RDBMS to manage game data, player information, in-game transactions, and more.</li>
+<li><strong>Examples</strong>: Companies like Blizzard, EA, and Ubisoft use RDBMS for various aspects of game management and player engagement.</li>
+</ul>
+<hr>
+</section>
+<section id="use-cases-of-rdbms-in-gaming" class="level2">
+<h2 class="anchored" data-anchor-id="use-cases-of-rdbms-in-gaming">Use Cases of RDBMS in Gaming</h2>
+<ul>
+<li><strong>Player Data Management</strong>: Storing player profiles, progress, and preferences. For example, Ubisoft uses databases to manage player data across multiple games.</li>
+<li><strong>In-Game Economy</strong>: Tracking virtual transactions, inventory management, and in-game currency. Games like Fortnite use RDBMS to handle millions of in-game transactions.</li>
+<li><strong>Multiplayer and Matchmaking</strong>: Managing multiplayer sessions and player matchmaking. Blizzard’s games, like Overwatch, use RDBMS to efficiently match players.</li>
+<li><strong>Leaderboards and Statistics</strong>: Storing and updating player rankings and game statistics in real-time. EA’s sports games use RDBMS to maintain global leaderboards.</li>
+</ul>
+</section>
+<section id="rdbms-in-online-gaming-platforms" class="level2">
+<h2 class="anchored" data-anchor-id="rdbms-in-online-gaming-platforms">RDBMS in Online Gaming Platforms</h2>
+<ul>
+<li><strong>Steam</strong>: Manages over 1 billion accounts and thousands of games, using RDBMS for user data, game libraries, and transaction records.</li>
+<li><strong>Xbox Live</strong>: Uses RDBMS to manage user profiles, achievements, and online multiplayer sessions for millions of users.</li>
+<li><strong>PlayStation Network</strong>: Relies on RDBMS for managing user accounts, digital storefront transactions, and social features.</li>
+</ul>
+</section>
+<section id="challenges-and-solutions-in-gaming-with-rdbms" class="level2">
+<h2 class="anchored" data-anchor-id="challenges-and-solutions-in-gaming-with-rdbms">Challenges and Solutions in Gaming with RDBMS</h2>
+<ul>
+<li><strong>Scalability</strong>: Handling peak loads during game launches and events. Solutions involve scalable cloud-based RDBMS.</li>
+<li><strong>Real-Time Performance</strong>: Ensuring low latency for real-time game data. Use of optimized database schemas and indexing strategies.</li>
+<li><strong>Data Security</strong>: Protecting sensitive player data. Implementation of robust security protocols and regular audits.</li>
+</ul>
+</section>
+<section id="reflection-on-rdbms-in-gaming" class="level2">
+<h2 class="anchored" data-anchor-id="reflection-on-rdbms-in-gaming">Reflection on RDBMS in Gaming</h2>
+<ul>
+<li>Consider how RDBMS impacts your experience in online and multiplayer games.</li>
+<li>Reflect on the balance between real-time performance and data integrity in gaming databases.</li>
+</ul>
+</section>
+<section id="rdbms-in-the-bitcoin-industry" class="level2">
+<h2 class="anchored" data-anchor-id="rdbms-in-the-bitcoin-industry">RDBMS in the Bitcoin Industry</h2>
+<ul>
+<li><strong>Overview</strong>: Bitcoin and cryptocurrency platforms use RDBMS for transaction records, wallet management, and exchange operations.</li>
+<li><strong>Examples</strong>: Companies like Coinbase and Binance use RDBMS for secure and efficient transaction processing.</li>
+</ul>
+</section>
+<section id="use-cases-of-rdbms-in-bitcoin" class="level2">
+<h2 class="anchored" data-anchor-id="use-cases-of-rdbms-in-bitcoin">Use Cases of RDBMS in Bitcoin</h2>
+<ul>
+<li><strong>Transaction Ledger</strong>: Storing and verifying transaction records in a secure and scalable manner.</li>
+<li><strong>Wallet Management</strong>: Managing user wallet data, including balances and transaction history.</li>
+<li><strong>Exchange Operations</strong>: Handling trading data, order matching, and currency exchange rates.</li>
+</ul>
+</section>
+<section id="rdbms-in-pharma" class="level2">
+<h2 class="anchored" data-anchor-id="rdbms-in-pharma">RDBMS in Pharma</h2>
+<ul>
+<li><strong>Overview</strong>: Pharmaceutical companies use RDBMS for drug development data, clinical trial management, and patient records.</li>
+<li><strong>Examples</strong>: Pfizer and Merck use RDBMS to manage extensive research data and clinical trial information.</li>
+</ul>
+</section>
+<section id="use-cases-of-rdbms-in-pharma" class="level2">
+<h2 class="anchored" data-anchor-id="use-cases-of-rdbms-in-pharma">Use Cases of RDBMS in Pharma</h2>
+<ul>
+<li><strong>Research Data Management</strong>: Storing and analyzing data from drug research and development.</li>
+<li><strong>Clinical Trials</strong>: Managing patient data, trial results, and regulatory compliance information.</li>
+<li><strong>Supply Chain Management</strong>: Tracking drug production, distribution, and inventory.</li>
+</ul>
+</section>
+<section id="rdbms-in-fintech" class="level2">
+<h2 class="anchored" data-anchor-id="rdbms-in-fintech">RDBMS in FinTech</h2>
+<ul>
+<li><strong>Overview</strong>: FinTech companies use RDBMS for transaction processing, risk management, and customer data analysis.</li>
+<li><strong>Examples</strong>: Companies like Square and Robinhood rely on RDBMS for real-time financial data processing.</li>
+</ul>
+</section>
+<section id="use-cases-of-rdbms-in-fintech" class="level2">
+<h2 class="anchored" data-anchor-id="use-cases-of-rdbms-in-fintech">Use Cases of RDBMS in FinTech</h2>
+<ul>
+<li><strong>Transaction Processing</strong>: Managing real-time financial transactions and payment processing.</li>
+<li><strong>Risk Analysis and Compliance</strong>: Storing and analyzing data for risk management and regulatory compliance.</li>
+<li><strong>Customer Data Management</strong>: Managing customer profiles, transaction history, and personalized financial services.</li>
+</ul>
+</section>
+<section id="rdbms-in-ai-and-machine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="rdbms-in-ai-and-machine-learning">RDBMS in AI and Machine Learning</h2>
+<ul>
+<li><strong>Overview</strong>: AI and ML companies use RDBMS to store and process large datasets for model training and analysis.</li>
+<li><strong>Examples</strong>: IBM Watson and OpenAI use RDBMS for data storage and retrieval in AI model development.</li>
+</ul>
+</section>
+<section id="use-cases-of-rdbms-in-ai" class="level2">
+<h2 class="anchored" data-anchor-id="use-cases-of-rdbms-in-ai">Use Cases of RDBMS in AI</h2>
+<ul>
+<li><strong>Data Storage for Model Training</strong>: Storing large datasets used for training machine learning models.</li>
+<li><strong>Model Performance Tracking</strong>: Recording and analyzing AI model performance metrics.</li>
+<li><strong>User Interaction Data</strong>: Managing data from user interactions with AI systems for continuous improvement.</li>
+</ul>
+</section>
+<section id="rdbms-in-cybersecurity" class="level2">
+<h2 class="anchored" data-anchor-id="rdbms-in-cybersecurity">RDBMS in Cybersecurity</h2>
+<ul>
+<li><strong>Overview</strong>: Cybersecurity firms use RDBMS for threat data analysis, incident management, and security information management.</li>
+<li><strong>Examples</strong>: Companies like Symantec and McAfee use RDBMS to manage and analyze security-related data.</li>
+</ul>
+</section>
+<section id="use-cases-of-rdbms-in-cybersecurity" class="level2">
+<h2 class="anchored" data-anchor-id="use-cases-of-rdbms-in-cybersecurity">Use Cases of RDBMS in Cybersecurity</h2>
+<ul>
+<li><strong>Threat Intelligence</strong>: Storing and analyzing data on cyber threats and attack patterns.</li>
+<li><strong>Incident Response</strong>: Managing data related to security incidents and response activities.</li>
+<li><strong>Compliance and Reporting</strong>: Storing data for regulatory compliance and generating security reports.</li>
+</ul>
+</section>
+<section id="rdbms-in-telecom" class="level2">
+<h2 class="anchored" data-anchor-id="rdbms-in-telecom">RDBMS in Telecom</h2>
+<ul>
+<li><strong>Overview</strong>: Telecommunications companies use RDBMS for customer data management, billing systems, and network operations.</li>
+<li><strong>Examples</strong>: AT&amp;T and Verizon use RDBMS to manage vast amounts of customer and operational data.</li>
+</ul>
+</section>
+<section id="use-cases-of-rdbms-in-telecom" class="level2">
+<h2 class="anchored" data-anchor-id="use-cases-of-rdbms-in-telecom">Use Cases of RDBMS in Telecom</h2>
+<ul>
+<li><strong>Customer Data Management</strong>: Storing and managing customer profiles, service plans, and usage data.</li>
+<li><strong>Billing and Payment Processing</strong>: Managing billing cycles, payment records, and transaction processing.</li>
+<li><strong>Network Operations</strong>: Storing data related to network infrastructure, traffic management, and maintenance.</li>
+</ul>
+</section>
+<section id="rdbms-in-data-analytics" class="level2">
+<h2 class="anchored" data-anchor-id="rdbms-in-data-analytics">RDBMS in Data Analytics</h2>
+<ul>
+<li><strong>Overview</strong>: Data analytics firms use RDBMS for storing, processing, and analyzing large datasets to derive insights.</li>
+<li><strong>Examples</strong>: Companies like Tableau and Splunk use RDBMS for efficient data analysis and visualization.</li>
+</ul>
+</section>
+<section id="use-cases-of-rdbms-in-data-analytics" class="level2">
+<h2 class="anchored" data-anchor-id="use-cases-of-rdbms-in-data-analytics">Use Cases of RDBMS in Data Analytics</h2>
+<ul>
+<li><strong>Data Warehousing</strong>: Storing large volumes of data for analysis and reporting.</li>
+<li><strong>Business Intelligence</strong>: Providing insights for business decision-making through data analysis.</li>
+<li><strong>Predictive Analytics</strong>: Using historical data to predict future trends and patterns.</li>
+</ul>
+</section>
+<section id="reflection-on-industry-usage" class="level2">
+<h2 class="anchored" data-anchor-id="reflection-on-industry-usage">Reflection on Industry Usage</h2>
+<ul>
+<li>How do these specific numbers change your perspective on the importance and capabilities of RDBMS?</li>
+<li>Consider the challenges in managing such large volumes of data and transactions. How do RDBMS features contribute to addressing these challenges?</li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

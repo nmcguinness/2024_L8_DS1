@@ -1,0 +1,12 @@
+{
+  "Introduction.qmd": {
+    "Introduction.html": "2eacfe39"
+  },
+  "Introduction_to_sql.qmd": {
+    "Introduction_to_sql.html": "4589840a"
+  },
+  "Introduction_to_rdbms.qmd": {
+    "Introduction_to_rdbms.html": "14441db3",
+    "Introduction_to_rdbms.pptx": "c784dc45"
+  }
+}
