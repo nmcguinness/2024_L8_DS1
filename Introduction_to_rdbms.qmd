@@ -36,9 +36,9 @@ format:
 
 ## Lecture Objectives
 
-- Understand the basics of Relational Database Management Systems (RDBMS)
-- Learn the fundamentals of SQL (Structured Query Language)
-- Explore how RDBMS and SQL are used in game and software development
+- Understand the basics of Relational Database Management Systems (RDBMS).
+- Learn the fundamentals of SQL (Structured Query Language).
+- Explore how RDBMS and SQL are used in game and software development.
 
 ## What is RDBMS?
 
